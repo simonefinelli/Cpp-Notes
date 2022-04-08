@@ -1,11 +1,11 @@
 // Section 9
 // Challenge
-/*    
+/*
     This challenge is about using a collection (list) of integers and allowing the user
     to select options from a menu to perform operations on the list.
-    
+
     Your program should display a menu options to the user as follows:
-    
+
     P - Print numbers
     A - Add a number
     M - Display mean of the numbers
@@ -14,61 +14,143 @@
     Q - Quit
 
     Enter your choice:
-    
-The program should only accept valid choices from the user, both upper and lowercase selections should be allowed.
-If an illegal choice is made, you should display, "Unknown selection, please try again" and the menu options should be
-displayed again.
+
+    The program should only accept valid choices from the user, both upper and lowercase selections should be allowed.
+    If an illegal choice is made, you should display, "Unknown selection, please try again" and the menu options should be
+    displayed again.
 
 
-If the user enters 'P' or 'p', you should display all of the elements (ints) in the list.
-If the list is empty you should display "[] - the list is empty"
-If the list is not empty then all the list element should be displayed inside square brackets separated by a space. 
-For example, [ 1 2 3 4 5 ]
-      
-If the user enters 'A' or 'a' then you should prompt the user for an integer to add to the list 
-which you will add to the list and then display it was added. For example, if the user enters 5
-You should display, "5 added".
-Duplicate list entries are OK
+    If the user enters 'P' or 'p', you should display all the elements (ints) in the list.
+    If the list is empty you should display "[] - the list is empty"
+    If the list is not empty then all the list element should be displayed inside square brackets separated by a space.
+    For example, [ 1 2 3 4 5 ]
 
-If the user enters 'M' or 'm'  you should calculate the mean or average of the elements in the list and display it.
-If the list is empty you should display, "Unable to calculate the mean - no data"
+    If the user enters 'A' or 'a' then you should prompt the user for an integer to add to the list
+    which you will add to the list and then display it was added. For example, if the user enters 5
+    You should display, "5 added".
+    Duplicate list entries are OK
 
-If the user enters 'S' or 's' you should display the smallest element in the list.
-For example, if the list contains [2 4 5 1],  you should display, "The smallest number is 1"
-If the list is empty you should display, "Unable to determine the smallest number - list is empty"
+    If the user enters 'M' or 'm'  you should calculate the mean or average of the elements in the list and display it.
+    If the list is empty you should display, "Unable to calculate the mean - no data"
 
-If the user enters 'L' or 'l' you should display the largest element in the list
-For example, if the list contains [2 4 5 1], you should display, "The largest number is 5"
-If the list is empty you should display, "Unable to determine the largest number - list is empty"
+    If the user enters 'S' or 's' you should display the smallest element in the list.
+    For example, if the list contains [2 4 5 1],  you should display, "The smallest number is 1"
+    If the list is empty you should display, "Unable to determine the smallest number - list is empty"
 
-If the user enters 'Q' or 'q' then you should display 'Goodbye" and the program should terminate.
+    If the user enters 'L' or 'l' you should display the largest element in the list
+    For example, if the list contains [2 4 5 1], you should display, "The largest number is 5"
+    If the list is empty you should display, "Unable to determine the largest number - list is empty"
 
-Before you begin. Write out the steps you need to take and decide in what order they should be done.
-Think about what loops you should use as well as what you will use for your selection logic.
+    If the user enters 'Q' or 'q' then you should display 'Goodbye' and the program should terminate.
 
-This exercise can be challenging! It may likely take a few attempts before you complete it -- that's OK!
+    Before you begin. Write out the steps you need to take and decide in what order they should be done.
+    Think about what loops you should use as well as what you will use for your selection logic.
 
-Finally, be sure to test your program as you go and at the end.
+    This exercise can be challenging! It may likely take a few attempts before you complete it -- that's OK!
 
-Hint: Use a vector!
+    Finally, be sure to test your program as you go and at the end.
 
-Additional functionality if you wish to extend this program.
+    Hint: Use a vector!
 
-- search for a number in the list and if found display the number of times it occurs in the list
-- clearing out the list (make it empty again) (Hint: the vector class has a .clear() method)
-- don't allow duplicate entries
-- come up with your own ideas!
+    Additional functionality if you wish to extend this program.
 
-Good luck!
+    - search for a number in the list and if found display the number of times it occurs in the list
+    - clearing out the list (make it empty again) (Hint: the vector class has a .clear() method)
+    - don't allow duplicate entries
+    - come up with your own ideas!
 
+    Good luck!
 */
-#include <iostream>
 
-using std::cout, std::cin, std::endl;
+#include <iostream>
+#include <vector>
+
+using std::cout, std::cin, std::endl, std::vector;
 
 int main() {
-    
-    cout << "Hello world" << endl;
-    return 0;
+    char choice {};
+    vector<int> numbers {};
+    int number_to_add {};
+
+    while (true) {
+        // Display menu
+        cout << "P - Print numbers" << endl;
+        cout << "A - Add a number" << endl;
+        cout << "M - Display mean of the numbers" << endl;
+        cout << "S - Display the smallest number" << endl;
+        cout << "L - Display the largest number" << endl;
+        cout << "C - Clear the numbers" << endl;
+        cout << "Q - Quit" << endl;
+
+        cout << "Enter your choice: ";
+        cin >> choice;
+
+        switch (choice) {
+            case 'P': case 'p':
+                if (!numbers.empty()) {
+                    cout << "[";
+                    for (auto n: numbers) {
+                        cout << ' ' << n << ' ';
+                    }
+                    cout << "]" << endl;
+                } else {
+                    cout << "[] - the list is empty" << endl;
+                }
+                break;
+            case 'A': case 'a':
+                cout << "Insert an integer: ";
+                cin >> number_to_add;
+                numbers.push_back(number_to_add);
+                cout << "Added the number: " << number_to_add << endl;
+                break;
+            case 'M': case 'm':
+                if (!numbers.empty()) {
+                    int total {};
+                    for (auto n : numbers)
+                        total += n;
+                    float mean =
+                            static_cast<float> (total) / float (numbers.size());
+                    cout << "The mean is: " << mean << endl;
+                } else {
+                    cout << "Unable to calculate the mean - no data" << endl;
+                }
+                break;
+            case 'S': case 's':
+                if (!numbers.empty()) {
+                    int smallest {numbers.at(0)};
+                    for (auto n : numbers)
+                        if (n < smallest) smallest = n;
+                    cout << "The smallest number is: " << smallest << endl;
+                } else {
+                    cout << "Unable to determine the smallest number "
+                            "- numbers is empty!" << endl;
+                }
+                break;
+            case 'L': case 'l':
+                if (!numbers.empty()) {
+                    int largest {numbers.at(0)};
+                    for (auto n : numbers)
+                        if (n > largest) largest = n;
+                    cout << "The smallest number is: " << largest << endl;
+                } else {
+                    cout << "Unable to determine the largest number "
+                            "- numbers is empty!" << endl;
+                }
+                break;
+            case 'C': case 'c':
+                if (!numbers.empty()) {
+                    numbers.clear();
+                    cout << "List cleaned!" << endl;
+                } else {
+                    cout << "List empty!" << endl;
+                }
+                break;
+            case 'Q': case 'q':
+                cout << "Goodbye!" << endl;
+                return 0;
+            default:
+                cout << "Unknown selection, please try again!" << endl;
+        }
+    }
 }
 
