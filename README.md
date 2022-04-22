@@ -1,2 +1,2 @@
 # Cpp-Notes
-Notes on the main topics used with the C ++ language!
+Notes on the main topics of C++!
