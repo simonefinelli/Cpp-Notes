@@ -6,8 +6,7 @@
 
 using namespace std;
 
-class Player
-{
+class Player {
 private:
     std::string name {"XXXXXXX"};
     int health;
