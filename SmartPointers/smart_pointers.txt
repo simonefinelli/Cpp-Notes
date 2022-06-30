@@ -1,0 +1,60 @@
+*** What is a Smart Pointer
+
+Smart pointers are objects and they are implemented as C++ template classes (like vector class), which we can instantiate.
+
+They are basically wrapper classes that contain and manage raw pointers.
+
+They can only point to heap-allocated memory, and they automatically call delete when no longer needed.
+
+Smart pointers adhere to RAII principles.
+
+C++ has 4 types of smart pointers:
+ - Unique pointers (unique_ptr)
+ - Shared pointers (shared_ptr)
+ - Weak pointers (weak_ptr)
+ - Auto pointers (auto_ptr) - DEPRECATED
+
+
+*** Property of a Smart Pointer
+ - Defined by class templates
+ - Wrapper around raw pointers
+ - Already overloaded operators:
+    - Dereference (*)
+    - Member selection (->)
+ - Pointer arithmetic not supported (++, --, etc.)
+ - Can have custom deleters
+
+
+*** How to declare a Smart Pointer
+std::smart_pointer<SomeClass> ptr = ...;
+
+ptr->method();
+cout << (*ptr) << endl;
+
+// no delete needed
+// when no longer needed (out of scope), prt will be destroyed automatically
+
+
+RAII - Resource Acquisition Is Initialization
+It is a commont idiom or pattern used in software desing based on container object lifetime.
+
+RAII objects are allocated on the stack.
+
+Resource Acquisition means that RAII objects will acquire some sort of resource like:
+ - Open a file
+ - Allocate memory
+ - Acquire a lock
+ - etc.
+
+Is Initialization means that the resource is acquired at object initialization time:
+ - The resource is acquired in a constructor.
+
+Resource Relinquishing means release the resource that we acquired:
+ - The resource is released in the destructor
+      - Close the file
+      - Deallocate memory
+      - Release the lock
+      - etc.
+
+
+
