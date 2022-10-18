@@ -9,7 +9,7 @@ the main topics of C ++, starting from the simplest to the most advanced.
 In particular, the repository is divided into 3 main sections:
 1. Beginner: contains the 'classic' programming topic;
 2. Intermediate: discuss more complex topics, such as object-oriented programming;
-3. Expert: exposes advanced arguments that can help to understand better the 
+3. Advanced: exposes advanced arguments that can help to understand better the 
    language and its facets.
 
 
